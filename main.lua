@@ -2,7 +2,11 @@ local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Aika
 local window = library:CreateWindow("shimter hub") -- Creates the window
 local Main = window:CreateFolder("Main") -- Creates the folder(U will put here your buttons,etc)
 local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+local Mods = window:CreateFolder("Mods")
 
+Main:Toggle("Annoy people lol",function(bool)
+    shared.toggle = bool
+end)
 
 Main:Button("Anti-cheat bypass",function()
     local oldNamecall = nil
@@ -19,64 +23,98 @@ Main:Button("Anti-cheat bypass",function()
     end)
 end)
 
+local ohTable1 = {
+    ["Pitch"] = 1.2000000476837158,
+    ["MaxDistance"] = 9999,
+    ["Volume"] = 5,
+    ["Silenced"] = false,
+    ["SoundId"] = "rbxassetid://6667082259",
+    ["EmitterSize"] = 70,
+    ["Echo"] = true,
+    ["Muzzle"] = game:GetService("Players").LocalPlayer.Backpack.HandGun.Handle.GunMuzzlePoint
+}
+local ohTable2 = {
+    ["Enabled"] = false,
+    ["EmitterSize"] = 10,
+    ["CurrentAmmo"] = 8999999903,
+    ["Muzzle"] = game:GetService("Players").LocalPlayer.Backpack.HandGun.Handle.GunMuzzlePoint,
+    ["AmmoPerMag"] = 9000000000,
+    ["Volume"] = 1,
+    ["SoundId"] = "rbxassetid://3032849569",
+    ["MaxDistance"] = 10000,
+    ["Pitch"] = 1
+}
 
 
-Main:Button("Make your pistol op ", function()
-    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+Main:DestroyGui()
 
-    weaponMod.Auto = true
-    weaponMod.BaseDamage = 10000
-    weaponMod.Ammo = 9e9
-    weaponMod.MaxAmmo = 9e9
-    weaponMod.AmmoPerMag = 9e9
-    weaponMod.Range = 9e9
-    weaponMod.ReloadTime = 2
-    weaponMod.FireRate = 0.12
-    weaponMod.Recoil = 0
-    weaponMod.LimitedAmmoEnabled = false
-    weaponMod.Spread = 0
-    weaponMod.AutoReload = true
-    weaponMod.DelayBeforeFiring = 0
-    weaponMod.DelayAfterFiring = 0
-    weaponMod.DamageDropOffEnabled = false
-end)
 
-Main:Label("^^^ Execute every respawn",{
+Mods:Label("Execute every respawn",{
     TextSize = 15; -- Self Explaining
     TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
     BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
     
 }) 
 
-Main:Toggle("Toggle",function(bool)
-    shared.toggle = bool
-    while shared.toggle do
-        local ohTable1 = {
-            ["Pitch"] = 1.2000000476837158,
-            ["MaxDistance"] = 9999,
-            ["Volume"] = 5,
-            ["Silenced"] = false,
-            ["SoundId"] = "rbxassetid://6667082259",
-            ["EmitterSize"] = 70,
-            ["Echo"] = true,
-            ["Muzzle"] = game:GetService("Players").LocalPlayer.Backpack.HandGun.Handle.GunMuzzlePoint
-        }
-        local ohTable2 = {
-            ["Enabled"] = false,
-            ["EmitterSize"] = 10,
-            ["CurrentAmmo"] = 8999999903,
-            ["Muzzle"] = game:GetService("Players").LocalPlayer.Backpack.HandGun.Handle.GunMuzzlePoint,
-            ["AmmoPerMag"] = 9000000000,
-            ["Volume"] = 1,
-            ["SoundId"] = "rbxassetid://3032849569",
-            ["MaxDistance"] = 10000,
-            ["Pitch"] = 1
-        }
-        game:GetService("ReplicatedStorage").Remotes.PlayAudio:FireServer(ohTable1, ohTable2)
-        wait(0.1)
-    end
+Mods:Toggle("auto reload", function(bool)
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.AutoReload = bool
 end)
 
+Mods:Toggle("no damage drop off", function(bool)
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
-Main:DestroyGui()
+    weaponMod.DamageDropOffEnabled = bool
+end)
 
+Mods:Button("full-auto", function()
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.Auto = true
+end)
+
+Mods:Button("inf damage", function()
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.BaseDamage = 9e9
+end)
+
+Mods:Button("inf ammo", function()
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.Ammo = 9e9
+    weaponMod.MaxAmmo = 9e9
+    weaponMod.AmmoPerMag = 9e9
+    weaponMod.LimitedAmmoEnabled = false
+end)
+
+Mods:Button("inf range", function()
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.Range = 9e9
+end)
+
+Mods:Button("no recoil", function()
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.Recoil = 0
+end)
+
+Mods:Button("no spread", function()
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.Spread = 0
+end)
+
+Mods:Button("no firing delay", function()
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.DelayBeforeFiring = 0
+    weaponMod.DelayAfterFiring = 0
+end)
+
+while shared.toggle do
+    game:GetService("ReplicatedStorage").Remotes:WaitForChild("PlayAudio"):FireServer(ohTable1, ohTable2)
+    task.wait(0.1)
+end
