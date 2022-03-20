@@ -1,8 +1,8 @@
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 local window = library:CreateWindow("shimter hub") -- Creates the window
-local Main = window:CreateFolder("Main") -- Creates the folder(U will put here your buttons,etc)
 local Mods = window:CreateFolder("Pistol Mods")
 local rifle = window:CreateFolder("Rifle Mods")
+local ESPFolder = window:CreateFolder("ESP")
 local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
 
 
@@ -31,12 +31,13 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
 	Duration = 3,
 })
 
-Main:Toggle("ESP", function(v)
+ESPFolder:Toggle("ESP", function(v)
     ESP:Toggle(v)
-end )
+end)
 
-
-Main:DestroyGui()
+ESPFolder:ColorPicker("ColorPicker",Color3.fromRGB(255, 255, 255),function(v) --Default color
+    ESP.Color = v
+end)
 
 -- [ PISTOL MODS ] --
 
