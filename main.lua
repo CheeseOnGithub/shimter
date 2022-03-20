@@ -33,10 +33,22 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
 
 ESPFolder:Toggle("ESP", function(v)
     ESP:Toggle(v)
+    ESP.Names = shared.namesEnabled
+    ESP.Tracers = shared.tracersEnabled
 end)
 
-ESPFolder:ColorPicker("ColorPicker",Color3.fromRGB(255, 255, 255),function(v) --Default color
+ESPFolder:ColorPicker("colour",Color3.fromRGB(255, 255, 255),function(v) --Default color
     ESP.Color = v
+end)
+
+ESPFolder:Toggle("names",function(v)
+    ESP.Names = v
+    shared.namesEnabled = v
+end)
+
+ESPFolder:Toggle("tracers",function(v)
+    ESP.Tracers = v
+    shared.tracersEnabled = v
 end)
 
 -- [ PISTOL MODS ] --
