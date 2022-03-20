@@ -3,21 +3,36 @@ local window = library:CreateWindow("shimter hub") -- Creates the window
 local Main = window:CreateFolder("Main") -- Creates the folder(U will put here your buttons,etc)
 local Mods = window:CreateFolder("Pistol Mods")
 local rifle = window:CreateFolder("Rifle Mods")
+local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
 
-Main:Button("Anti-cheat bypass",function()
-    local oldNamecall = nil
 
-    oldNamecall = hookmetamethod(game, "__namecall", function(Self, ...)
-        local Args = {...}
-        local method = getnamecallmethod()
+game:GetService("StarterGui"):SetCore("SendNotification", {
+	Title = "running anticheat bypass",
+	Text = "wait a sec lol",
+    Duration = 2,
+})
 
-        if not checkcaller() and method == "Kick" then
-            return wait(9e9)
-        end
+local oldNamecall = nil
+oldNamecall = hookmetamethod(game, "__namecall", function(Self, ...)
+    local Args = {...}
+    local method = getnamecallmethod()
 
-        return oldNamecall(Self, ...)
-    end)
+    if not checkcaller() and method == "Kick" then
+        return wait(9e9)
+    end
+
+    return oldNamecall(Self, ...)
 end)
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+	Title = "done",
+	Text = "have fun making kids cry",
+	Duration = 3,
+})
+
+Main:Toggle("ESP", function(v)
+    ESP:Toggle(v)
+end )
 
 
 Main:DestroyGui()
