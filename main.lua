@@ -91,7 +91,12 @@ Mods:Button("no firing delay", function()
     weaponMod.DelayAfterFiring = 0
 end)
 
+Mods:Button("wallbang", function()
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
+    weaponMod.PenetrationDepth = 9e9
+    weaponMod.PenetrationAmount = 9e9
+end)
 
 -- [ RIFLE MODS ] --
 rifle:Button("inf damage", function()
@@ -150,4 +155,10 @@ rifle:Toggle("auto reload", function(bool)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
     rifleMod.AutoReload = bool
+end)
+rifle:Button("wallbang", function()
+    local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
+
+    rifleMod.PenetrationDepth = 9e9
+    rifleMod.PenetrationAmount = 9e9
 end)
