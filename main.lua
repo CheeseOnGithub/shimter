@@ -155,12 +155,10 @@ rifle:Toggle("auto reload", function(bool)
 
     rifleMod.AutoReload = bool
 end)
-<<<<<<< HEAD
+
 rifle:Button("wallbang", function()
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
     rifleMod.PenetrationDepth = 9e9
     rifleMod.PenetrationAmount = 9e9
 end)
-=======
->>>>>>> 9e7c2ad4e376912b21e4385149be1270a1600a3d
