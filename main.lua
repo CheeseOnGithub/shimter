@@ -1,7 +1,6 @@
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 local window = library:CreateWindow("shimter hub") -- Creates the window
 local Main = window:CreateFolder("Main") -- Creates the folder(U will put here your buttons,etc)
-local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 local Mods = window:CreateFolder("Pistol Mods")
 local rifle = window:CreateFolder("Rifle Mods")
 
