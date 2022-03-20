@@ -1,7 +1,6 @@
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 local window = library:CreateWindow("shimter hub") -- Creates the window
 local Main = window:CreateFolder("Main") -- Creates the folder(U will put here your buttons,etc)
-local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 local Mods = window:CreateFolder("Pistol Mods")
 local rifle = window:CreateFolder("Rifle Mods")
 
@@ -156,9 +155,12 @@ rifle:Toggle("auto reload", function(bool)
 
     rifleMod.AutoReload = bool
 end)
+<<<<<<< HEAD
 rifle:Button("wallbang", function()
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
     rifleMod.PenetrationDepth = 9e9
     rifleMod.PenetrationAmount = 9e9
 end)
+=======
+>>>>>>> 9e7c2ad4e376912b21e4385149be1270a1600a3d
