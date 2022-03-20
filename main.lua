@@ -4,10 +4,6 @@ local Main = window:CreateFolder("Main") -- Creates the folder(U will put here y
 local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 local Mods = window:CreateFolder("Mods")
 
-Main:Toggle("Annoy people lol",function(bool)
-    shared.toggle = bool
-end)
-
 Main:Button("Anti-cheat bypass",function()
     local oldNamecall = nil
 
@@ -22,28 +18,6 @@ Main:Button("Anti-cheat bypass",function()
         return oldNamecall(Self, ...)
     end)
 end)
-
-local ohTable1 = {
-    ["Pitch"] = 1.2000000476837158,
-    ["MaxDistance"] = 9999,
-    ["Volume"] = 5,
-    ["Silenced"] = false,
-    ["SoundId"] = "rbxassetid://6667082259",
-    ["EmitterSize"] = 70,
-    ["Echo"] = true,
-    ["Muzzle"] = game:GetService("Players").LocalPlayer.Backpack.HandGun.Handle.GunMuzzlePoint
-}
-local ohTable2 = {
-    ["Enabled"] = false,
-    ["EmitterSize"] = 10,
-    ["CurrentAmmo"] = 8999999903,
-    ["Muzzle"] = game:GetService("Players").LocalPlayer.Backpack.HandGun.Handle.GunMuzzlePoint,
-    ["AmmoPerMag"] = 9000000000,
-    ["Volume"] = 1,
-    ["SoundId"] = "rbxassetid://3032849569",
-    ["MaxDistance"] = 10000,
-    ["Pitch"] = 1
-}
 
 
 Main:DestroyGui()
@@ -113,8 +87,3 @@ Mods:Button("no firing delay", function()
     weaponMod.DelayBeforeFiring = 0
     weaponMod.DelayAfterFiring = 0
 end)
-
-while shared.toggle do
-    game:GetService("ReplicatedStorage").Remotes:WaitForChild("PlayAudio"):FireServer(ohTable1, ohTable2)
-    task.wait(0.1)
-end
