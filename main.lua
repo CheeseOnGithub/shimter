@@ -23,6 +23,7 @@ oldNamecall = hookmetamethod(game, "__namecall", function(Self, ...)
 
     return oldNamecall(Self, ...)
 end)
+task.wait(2)
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
 	Title = "done",
