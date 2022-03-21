@@ -4,6 +4,7 @@ local Mods = window:CreateFolder("Pistol Mods")
 local rifle = window:CreateFolder("Rifle Mods")
 local ESPFolder = window:CreateFolder("ESP")
 local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+local Humanoid = game.Players.LocalPlayer.Character.Humanoid
 
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -127,67 +128,144 @@ Mods:Button("wallbang", function()
 end)
 
 -- [ RIFLE MODS ] --
-rifle:Button("inf damage", function()
+rifle:Toggle("inf ammo", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifleMod.BaseDamage = 9e9
+    if v then
+        rifleMod.Ammo = 9e9
+        rifleMod.MaxAmmo = 9e9
+        rifleMod.AmmoPerMag = 9e9
+        rifleMod.LimitedAmmoEnabled = false
+    else
+        rifleMod.Ammo = 0
+        rifleMod.MaxAmmo = 48
+        rifleMod.AmmoPerMag = 13
+        rifleMod.LimitedAmmoEnabled = true
+    end
+    
+    if Humanoid.Health <= 0 then
+        v = false
+    end
 end)
 
-rifle:Button("inf ammo", function()
+rifle:Toggle("no recoil", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
+    if v then
+        rifleMod.Recoil = 0
+    else
+        rifleMod.Recoil = 20
+    end
 
-    rifleMod.Ammo = 9e9
-    rifleMod.MaxAmmo = 9e9
-    rifleMod.AmmoPerMag = 9e9
-    rifleMod.LimitedAmmoEnabled = false
+    if Humanoid.Health <= 0 then
+        v = false
+    end
 end)
 
-rifle:Button("inf range", function()
+rifle:Toggle("no spread", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifleMod.Range = 9e9
+    if v then
+        rifleMod.Spread = 0
+    else
+        rifleMod.Spread = 1
+    end
+
+    if Humanoid.Health <= 0 then
+        v = false
+    end
 end)
 
-rifle:Button("no recoil", function()
+rifle:Toggle("no firing delay", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifleMod.Recoil = 0
+    if v then
+        rifleMod.DelayBeforeFiring = 0
+        rifleMod.DelayAfterFiring = 0
+    else
+        rifleMod.DelayBeforeFiring = 1
+        rifleMod.DelayAfterFiring = 1
+    end
+
+    if Humanoid.Health <= 0 then
+        v = false
+    end
 end)
 
-rifle:Button("no spread", function()
+rifle:Toggle("full-auto", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifleMod.Spread = 0
+    rifle.Auto = v
+
+    if Humanoid.Health <= 0 then
+        v = false
+    end
 end)
 
-rifle:Button("no firing delay", function()
+rifle:Toggle("no damage drop off", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifleMod.DelayBeforeFiring = 0
-    rifleMod.DelayAfterFiring = 0
+    rifleMod.DamageDropOffEnabled = v
+
+    if Humanoid.Health <= 0 then
+        v = false
+    end
 end)
 
-rifle:Button("full-auto", function()
+rifle:Toggle("auto reload", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifleMod.Auto = true
+    rifleMod.AutoReload = v
+
+    if Humanoid.Health <= 0 then
+        v = false
+    end
 end)
 
-rifle:Toggle("no damage drop off", function(bool)
+rifle:Toggle("wallbang", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifleMod.DamageDropOffEnabled = bool
+    if v then
+        rifleMod.PenetrationDepth = 9e9
+        rifleMod.PenetrationAmount = 9e9
+    else
+        rifleMod.PenetrationDepth = 0.3
+        rifleMod.PenetrationAmount = 0
+    end
+
+    if Humanoid.Health <= 0 then
+        v = false
+    end
 end)
 
-rifle:Toggle("auto reload", function(bool)
+
+rifle:Slider("damage", 
+    {
+        min = 0,
+        max = 9e9,
+        precise = false
+    },
+    function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifleMod.AutoReload = bool
+    rifleMod.BaseDamage = v
+
+    if Humanoid.Health <= 0 then
+        v = 0
+    end
 end)
 
-rifle:Button("wallbang", function()
+rifle:Slider("range", 
+    {
+        min = 0,
+        max = 9e9,
+        precise = false
+    },
+    function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifleMod.PenetrationDepth = 9e9
-    rifleMod.PenetrationAmount = 9e9
+    rifleMod.Range = v
+
+    if Humanoid.Health <= 0 then
+        v = 0
+    end
 end)
