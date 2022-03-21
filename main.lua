@@ -194,7 +194,7 @@ end)
 rifle:Toggle("full-auto", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
-    rifle.Auto = v
+    rifleMod.Auto = v
 
     if Humanoid.Health <= 0 then
         v = false
