@@ -52,6 +52,10 @@ ESPFolder:Toggle("tracers",function(v)
     shared.tracersEnabled = v
 end)
 
+
+
+
+
 -- [ PISTOL MODS ] --
 
 Mods:Label("Execute every respawn",{
@@ -80,18 +84,6 @@ Mods:Toggle("full-auto", function(v)
     weaponMod.Auto = v
 end)
 
-Mods:Slider("damage", 
-    {
-        min = 0,
-        max = 9e9,
-        precise = false
-    },
-    function(v)
-    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
-
-    weaponMod.BaseDamage = v
-end)
-
 Mods:Toggle("inf ammo", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
@@ -106,18 +98,6 @@ Mods:Toggle("inf ammo", function(v)
         weaponMod.AmmoPerMag = 13
         weaponMod.LimitedAmmoEnabled = true
     end
-end)
-
-Mods:Slider("range", 
-    {
-        min = 0,
-        max = 9e9,
-        precise = false
-    },
-    function(v)
-    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
-
-    weaponMod.Range = v
 end)
 
 Mods:Toggle("no recoil", function(v)
@@ -164,6 +144,40 @@ Mods:Toggle("wallbang", function(v)
         weaponMod.PenetrationAmount = 0
     end
 end)
+
+Mods:Slider("range", 
+    {
+        min = 0,
+        max = 9e9,
+        precise = false
+    },
+    function(v)
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.Range = v
+end)
+
+Mods:Slider("damage", 
+    {
+        min = 0,
+        max = 9e9,
+        precise = false
+    },
+    function(v)
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.BaseDamage = v
+end)
+
+rifle:Slider("bullet speed", {
+    min = 0,
+    max = 9e9,
+    precise = false
+}, function(v)
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.BulletSpeed = v
+end) 
 
 -- [ RIFLE MODS ] --
 rifle:Toggle("inf ammo", function(v)
