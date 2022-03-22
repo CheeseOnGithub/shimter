@@ -61,70 +61,108 @@ Mods:Label("Execute every respawn",{
     
 }) 
 
-Mods:Toggle("auto reload", function(bool)
+Mods:Toggle("auto reload", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
-    weaponMod.AutoReload = bool
+    weaponMod.AutoReload = v
 end)
 
-Mods:Toggle("no damage drop off", function(bool)
+Mods:Toggle("no damage drop off", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
 
-    weaponMod.DamageDropOffEnabled = bool
+    weaponMod.DamageDropOffEnabled = v
 end)
 
-Mods:Button("full-auto", function()
+Mods:Toggle("full-auto", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
-    weaponMod.Auto = true
+    weaponMod.Auto = v
 end)
 
-Mods:Button("inf damage", function()
+Mods:Slider("damage", 
+    {
+        min = 0,
+        max = 9e9,
+        precise = false
+    },
+    function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
-    weaponMod.BaseDamage = 9e9
+    weaponMod.BaseDamage = v
 end)
 
-Mods:Button("inf ammo", function()
+Mods:Toggle("inf ammo", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
-    weaponMod.Ammo = 9e9
-    weaponMod.MaxAmmo = 9e9
-    weaponMod.AmmoPerMag = 9e9
-    weaponMod.LimitedAmmoEnabled = false
+    if v then
+        weaponMod.Ammo = 9e9
+        weaponMod.MaxAmmo = 9e9
+        weaponMod.AmmoPerMag = 9e9
+        weaponMod.LimitedAmmoEnabled = false
+    else
+        weaponMod.Ammo = 0
+        weaponMod.MaxAmmo = 48
+        weaponMod.AmmoPerMag = 13
+        weaponMod.LimitedAmmoEnabled = true
+    end
 end)
 
-Mods:Button("inf range", function()
+Mods:Slider("range", 
+    {
+        min = 0,
+        max = 9e9,
+        precise = false
+    },
+    function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
-    weaponMod.Range = 9e9
+    weaponMod.Range = v
 end)
 
-Mods:Button("no recoil", function()
+Mods:Toggle("no recoil", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
-    weaponMod.Recoil = 0
+    if v then
+        weaponMod.Recoil = 0
+    else
+        weaponMod.Recoil = 1
+    end
 end)
 
-Mods:Button("no spread", function()
+Mods:Toggle("no spread", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
-    weaponMod.Spread = 0
+    if v then
+        weaponMod.Spread = 0
+    else
+        weaponMod.Spread = 1
+    end
 end)
 
-Mods:Button("no firing delay", function()
+Mods:Toggle("no firing delay", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
-
-    weaponMod.DelayBeforeFiring = 0
-    weaponMod.DelayAfterFiring = 0
+    
+    if v then
+        weaponMod.DelayBeforeFiring = 0
+        weaponMod.DelayAfterFiring = 0
+    else
+        weaponMod.DelayBeforeFiring = 1
+        weaponMod.DelayAfterFiring = 1
+    end
+        
 end)
 
-Mods:Button("wallbang", function()
+Mods:Toggle("wallbang", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
-    weaponMod.PenetrationDepth = 9e9
-    weaponMod.PenetrationAmount = 9e9
+    if v then
+        weaponMod.PenetrationDepth = 9e9
+        weaponMod.PenetrationAmount = 9e9
+    else
+        weaponMod.PenetrationDepth = 0
+        weaponMod.PenetrationAmount = 0
+    end
 end)
 
 -- [ RIFLE MODS ] --
@@ -234,3 +272,13 @@ rifle:Slider("range",
 
     rifleMod.Range = v
 end)
+
+rifle:Slider("bullet speed", {
+    min = 0,
+    max = 9e9,
+    precise = false
+}, function(v)
+    local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
+
+    rifleMod.BulletSpeed = v
+end) 
