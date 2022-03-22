@@ -143,9 +143,6 @@ rifle:Toggle("inf ammo", function(v)
         rifleMod.LimitedAmmoEnabled = true
     end
     
-    if Humanoid.Health <= 0 then
-        v = false
-    end
 end)
 
 rifle:Toggle("no recoil", function(v)
@@ -156,9 +153,6 @@ rifle:Toggle("no recoil", function(v)
         rifleMod.Recoil = 20
     end
 
-    if Humanoid.Health <= 0 then
-        v = false
-    end
 end)
 
 rifle:Toggle("no spread", function(v)
@@ -170,9 +164,6 @@ rifle:Toggle("no spread", function(v)
         rifleMod.Spread = 1
     end
 
-    if Humanoid.Health <= 0 then
-        v = false
-    end
 end)
 
 rifle:Toggle("no firing delay", function(v)
@@ -185,20 +176,12 @@ rifle:Toggle("no firing delay", function(v)
         rifleMod.DelayBeforeFiring = 1
         rifleMod.DelayAfterFiring = 1
     end
-
-    if Humanoid.Health <= 0 then
-        v = false
-    end
 end)
 
 rifle:Toggle("full-auto", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
     rifleMod.Auto = v
-
-    if Humanoid.Health <= 0 then
-        v = false
-    end
 end)
 
 rifle:Toggle("no damage drop off", function(v)
@@ -206,19 +189,12 @@ rifle:Toggle("no damage drop off", function(v)
 
     rifleMod.DamageDropOffEnabled = v
 
-    if Humanoid.Health <= 0 then
-        v = false
-    end
 end)
 
 rifle:Toggle("auto reload", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
     rifleMod.AutoReload = v
-
-    if Humanoid.Health <= 0 then
-        v = false
-    end
 end)
 
 rifle:Toggle("wallbang", function(v)
@@ -232,9 +208,6 @@ rifle:Toggle("wallbang", function(v)
         rifleMod.PenetrationAmount = 0
     end
 
-    if Humanoid.Health <= 0 then
-        v = false
-    end
 end)
 
 
@@ -248,10 +221,6 @@ rifle:Slider("damage",
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
     rifleMod.BaseDamage = v
-
-    if Humanoid.Health <= 0 then
-        v = 0
-    end
 end)
 
 rifle:Slider("range", 
@@ -264,8 +233,4 @@ rifle:Slider("range",
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
     rifleMod.Range = v
-
-    if Humanoid.Health <= 0 then
-        v = 0
-    end
 end)
