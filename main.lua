@@ -268,7 +268,7 @@ rifle:Toggle("wallbang", function(v)
 
 end)
 
-Mods:Toggle("flaming bullets", function(v)
+rifle:Toggle("flaming bullets", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
     rifleMod.FlamingBullet = v
