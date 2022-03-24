@@ -145,6 +145,12 @@ Mods:Toggle("wallbang", function(v)
     end
 end)
 
+Mods:Toggle("flaming bullets", function(v)
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.FlamingBullet = v
+end)
+
 Mods:Slider("range", 
     {
         min = 0,
@@ -169,7 +175,7 @@ Mods:Slider("damage",
     weaponMod.BaseDamage = v
 end)
 
-rifle:Slider("bullet speed", {
+Mods:Slider("bullet speed", {
     min = 0,
     max = 9e9,
     precise = false
@@ -262,6 +268,11 @@ rifle:Toggle("wallbang", function(v)
 
 end)
 
+Mods:Toggle("flaming bullets", function(v)
+    local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
+
+    rifleMod.FlamingBullet = v
+end)
 
 rifle:Slider("damage", 
     {
