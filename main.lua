@@ -100,6 +100,12 @@ Mods:Toggle("inf ammo", function(v)
     end
 end)
 
+Mods:Toggle("hitmarker", function(v)
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.HitmarkerEnabled = v
+end)
+
 Mods:Toggle("no recoil", function(v)
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
@@ -151,6 +157,12 @@ Mods:Toggle("flaming bullets", function(v)
     weaponMod.FlamingBullet = v
 end)
 
+Mods:Toggle("freezing bullets", function(v)
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.FreezingBullet = v
+end)
+
 Mods:Slider("range", 
     {
         min = 0,
@@ -183,7 +195,7 @@ Mods:Slider("bullet speed", {
     local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
 
     weaponMod.BulletSpeed = v
-end) 
+end)
 
 -- [ RIFLE MODS ] --
 rifle:Toggle("inf ammo", function(v)
@@ -272,6 +284,18 @@ rifle:Toggle("flaming bullets", function(v)
     local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
 
     rifleMod.FlamingBullet = v
+end)
+
+rifle:Toggle("hitmarker", function(v)
+    local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
+
+    rifleMod.HitmarkerEnabled = v
+end)
+
+rifle:Toggle("freezing bullets", function(v)
+    local rifleMod = require(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("CombatRifle").Setting)
+
+    rifleMod.FreezingBullet = v
 end)
 
 rifle:Slider("damage", 
