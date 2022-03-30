@@ -163,6 +163,12 @@ Mods:Toggle("freezing bullets", function(v)
     weaponMod.FreezingBullet = v
 end)
 
+Mods:Toggle("explosive bullets", function(v)
+    local weaponMod = require(game:GetService("Players").LocalPlayer.Backpack.HandGun.Setting)
+
+    weaponMod.ExplosiveEnabled = v
+end)
+
 Mods:Slider("range", 
     {
         min = 0,
